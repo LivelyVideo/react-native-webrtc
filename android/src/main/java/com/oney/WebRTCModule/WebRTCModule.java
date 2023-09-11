@@ -882,8 +882,12 @@ public class WebRTCModule extends ReactContextBaseJavaModule {
                 for (String streamKey : mPeerConnectionObservers.valueAt(i).remoteStreams.keySet()) {
                     MediaStream foundStream = mPeerConnectionObservers.valueAt(i).remoteStreams.get(streamKey);
 
-                    if (foundStream != null && Objects.equals(stream.getId(), foundStream.getId()))
-                        mPeerConnectionObservers.valueAt(i).remoteStreams.remove(streamKey);
+                    try {
+                        if (foundStream != null && Objects.equals(stream.getId(), foundStream.getId()))
+                            mPeerConnectionObservers.valueAt(i).remoteStreams.remove(streamKey);
+                    } catch (Exception ex) {
+                        Log.e(TAG, ex.getMessage(), ex);
+                    }
                 }
             }
 

@@ -1,0 +1,1 @@
+this directory contains documentation for VDC specific changes to react-native-webrtc
